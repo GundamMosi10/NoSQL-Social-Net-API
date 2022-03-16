@@ -9,6 +9,8 @@ module.exports = {
     getSingleUser(req, res) { //gets a single user with an id
         User.findOne({ _id: req.params.userId })
             .select('-_v')
+            .populate('friends')
+            .populate('thoughts')
             .then((user) => 
                 !user
                     ? res.status(404).json({ message: 'No user with that ID exists'})
@@ -20,6 +22,19 @@ module.exports = {
         User.create(req.body)
             .then((user) => res.json(user))
             .catch((err) => (500).json(err));
+    },
+    updateUser(req, res) { //updates a user
+        User.findOneAndUpdate(
+            { _id: req.params.userId },
+            { $set: req.body },
+            { runValidators: true, new: true }
+        )
+            .then((user) => 
+                !user
+                  ? res.status(404).json({ message: 'No user with this id'})
+                  : res.json(user) 
+            )
+            .catch((err) => res.status(500).json(err));
     },
     deleteUser(req, res) { //deletes a user and their thoughts associated with the user
         User.findOneAndDelete({ _id: req.params.userId })
@@ -33,6 +48,6 @@ module.exports = {
     },
 };
 
-//add a thought ??
-//remove a thought ??
+//add a friend ??
+//remove a friend ??
 
