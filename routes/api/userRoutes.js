@@ -25,9 +25,7 @@ router.route('/:userId').get(getSingleUser).delete(deleteUser); // /api/users/:u
 
 router.route('/:userId').get(getSingleUser).put(updateUser); // /api/users/:userId  //what is wrong with this line?
 
-router.route('/:userId/friends').post(addFriend); // /api/users/:userId/friends
-
-router.route('/:userId/friends/:friendId').delete(removeFriend); // /api/users/:userId/friends/:friendId
+router.route('/:userId/friends/:friendId').post(addFriend).delete(removeFriend); // /api/users/:userId/friends/:friendId
 
 module.exports = router;
 

@@ -84,12 +84,12 @@ module.exports = {
                 ? res.status(404).json({ message: 'No thought with this id!'})
                 : res.json(thought)
             )
-            .cath((err) => res.status(500).json(err));
+            .catch((err) => res.status(500).json(err));
     },
     removeReaction(req, res) {
         Thought.findOneAndUpdate(
             { _id: req.params.thoughtId },
-            { $pull: { thoughts: { thoughtId: req.params.thoughtId } }},
+            { $pull: { reactions: { reactionId: req.params.reactionId } }},
             { runValidators: true, new: true }
         )
         .then((thought) =>

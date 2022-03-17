@@ -52,6 +52,13 @@ module.exports = {
             { $addToSet: { friends: req.params.friendId } },
             { runValidators: true, new: true}
         )
+            .then((user) => {
+                return User.findOneAndUpdate(
+                    { _id: req.params.friendId }, 
+                    { $addToSet: { friends: req.params.userId } },
+                    { runValidators: true, new: true}
+                )
+            })
             .then((user) => 
                 !user
                     ? res.status(404).json({ message: 'No user with this id!'})
