@@ -19,14 +19,14 @@ module.exports = {
         Thought.create(req.body)
             .then((thought) => {
                 return User.findOneAndUpdate(
-                    { _id: req.body.userId },
+                    { username: req.body.username }, //.params
                     { $addToSet: { thoughts: thought._id } },
                     { new: true }
                 );
             })
             .then((user) => 
             !user 
-              ? res.statsu(404).json({
+              ? res.status(404).json({
                     message: 'Thought created, but found no user with that ID',
                 })
               : res.json('Created the thought')
@@ -54,19 +54,20 @@ module.exports = {
     },
     deleteThought(req, res) { //deletes a thought 
         Thought.findOneAndRemove({ _id: req.params.thoughtId })
-            .then((thought) => 
-              !thought
+            .then((thought) => {
+                console.log(thought);
+              return !thought
                 ? res.status(404).json({ message: 'No thought with this ID' })
                 : User.findOneAndUpdate(
                     { thoughts: req.params.thoughtId },
                     { $pull: { thoughts: req.params.thoughtId } },
                     { new: true }
                 )
-            )
+            })
             .then((user) => 
               !user
                 ? res.status(404).json({
-                    message: 'Thought created but no user with this id!',
+                    message: 'Thought deleted but no user with this id!',
                 })
                 : res.json({ message: 'Thought successfully deleted!' })
             )
