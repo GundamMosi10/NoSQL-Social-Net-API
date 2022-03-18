@@ -1,7 +1,7 @@
 # NoSQL-Social-Net-API
 
 ## Description:
-
+This application demonstrates the functionality of a backend web app, using insomnia to show the routes of CRUD operations. This would allow us to create users, update users, delete users and get a list of all users. This app also allows up to create thoughts for users and update older thoughts and delete thoughts and get all thoughts. We can also add reactions to a specific persons thought and as well delete that reaction another functionality to the app is that we can add friends to each other and delete friends. 
 
 ## Table of Contents:
 
@@ -21,11 +21,11 @@
 
 ## Usage:
 
-Here is a link to a [demo]()
-![Screenshot]( "screen shot #1 of the CMS-Content-Management-System")
+Here is a link to a [demo](https://vimeo.com/689498039/b491c61edd)
+![Screenshot](./img/NoSQL-Social-Net-Api-ScreenShot.jpeg "screen shot #1 of the CMS-Content-Management-System")
 
 ## Installation:
-
+With the code downloaded you can run the integrated terminal and type the code: npm i to install any packages that are needed, and then you can run the code to start the server with nodemon server.js or node server.js. Now you can see the functionality in the Insomnia app. 
 ## License:
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg) [License: MIT](https://opensource.org/licenses/MIT)
